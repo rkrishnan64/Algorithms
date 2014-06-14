@@ -3,9 +3,9 @@ public class Interviewer
 {
 	String Name;
 	
-	Interviewer()
+	public Interviewer(String Name)
 	{
-		Name = null;
+		this.Name = Name;
 	}
 	
 	public String getName()
