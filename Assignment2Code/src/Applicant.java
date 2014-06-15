@@ -6,6 +6,7 @@ public class Applicant
 	private String emailAddress = "";
 	private float applicantRating = 0;
 	int[] applicantInterviewer = new int[15];
+	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -35,6 +36,9 @@ public class Applicant
 	}
 	public void setApplicantRating(float applicantRating) {
 		this.applicantRating = applicantRating;
+	}
+	public void setApplicantInterviewer(int[] applicantInterviewer) {
+		this.applicantInterviewer = applicantInterviewer;
 	}
 
 

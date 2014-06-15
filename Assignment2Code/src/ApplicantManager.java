@@ -32,6 +32,7 @@ public class ApplicantManager
 		}
 	}
 	
+	//TODO 
 	//need to still finish - waiting on applicantrating class
 	//added applicant id as parameter
 	public void rateApplicant(int experienceRating, int attitudeRating, int salaryRating, int applicantID)
@@ -48,9 +49,6 @@ public class ApplicantManager
 		}
 	}
 	
-	
-	//need to finish still
-	//need to create setApplicantInterviewer method in Job class - waiting on job class
 	public void assignInterviewer(int interviewerID, int applicantID)
 	{
 		loop:
@@ -76,6 +74,7 @@ public class ApplicantManager
 				{
 					int[] newList = new int[interviewers.length + 1];
 					newList[-1] = interviewerID;
+					applicantList.get(i).setApplicantInterviewer(newList);
 					
 				}
 				break loop;
