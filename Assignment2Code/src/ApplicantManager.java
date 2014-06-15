@@ -9,7 +9,7 @@ public class ApplicantManager
 	public void createApplicant(int jobID, String firstName, String lastName, String emailAddress, int nextApplicantID)
 	{
 		Applicant app = new Applicant();
-		app.setApplicantID(nextApplicantID);
+		app.setApplicantID(this.nextApplicantID);
 		app.setEmailAddress(emailAddress);
 		app.setFirstName(firstName);
 		app.setLastName(lastName);
@@ -32,13 +32,25 @@ public class ApplicantManager
 		}
 	}
 	
-	public void rateApplicant(int experienceRating, int attitudeRating, int salaryRating)
+	//need to still finish - waiting on applicantrating class
+	//added applicant id as parameter
+	public void rateApplicant(int experienceRating, int attitudeRating, int salaryRating, int applicantID)
 	{
-		
+		loop:
+		for(int i = 0; i < applicantList.size(); i++)
+		{
+			if(applicantList.get(i).getApplicantID() == applicantID)
+			{
+				Applicant a = applicantList.get(i);
+				ApplicantRating rating = new ApplicantRating();
+				break loop;
+			}
+		}
 	}
 	
 	
 	//need to finish still
+	//need to create setApplicantInterviewer method in Job class - waiting on job class
 	public void assignInterviewer(int interviewerID, int applicantID)
 	{
 		loop:
