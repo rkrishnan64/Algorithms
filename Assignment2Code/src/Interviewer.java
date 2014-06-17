@@ -1,12 +1,8 @@
 
 public class Interviewer 
 {
-	String Name;
-	
-	public Interviewer(String Name)
-	{
-		this.Name = Name;
-	}
+	private String Name;
+	private int ID;
 	
 	public String getName()
 	{
