@@ -1,9 +1,11 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class ApplicantManager 
 {
-	private ArrayList<Applicant> applicantList = new ArrayList<Applicant>();
+	//changed from arraylist to hashmap
+	private HashMap<Integer, Applicant> applicantList = new HashMap<Integer, Applicant>();
 	private int nextApplicantID = 0;
 	
 	public void createApplicant(int jobID, String firstName, String lastName, String emailAddress, int nextApplicantID)
@@ -16,20 +18,12 @@ public class ApplicantManager
 		
 		this.nextApplicantID = nextApplicantID;//not sure
 		
-		applicantList.add(app);
+		applicantList.put(app.getApplicantID(), app);
 	}
 	
 	public void deleteApplicant(int applicantID)
 	{
-		loop:
-		for(int i = 0; i < applicantList.size(); i++)
-		{
-			if(applicantList.get(i).getApplicantID() == applicantID)
-			{
-				applicantList.remove(i);
-				break loop;
-			}
-		}
+		applicantList.remove(applicantID);
 	}
 	
 	//TODO 
@@ -37,48 +31,33 @@ public class ApplicantManager
 	//added applicant id as parameter
 	public void rateApplicant(int experienceRating, int attitudeRating, int salaryRating, int applicantID)
 	{
-		loop:
-		for(int i = 0; i < applicantList.size(); i++)
-		{
-			if(applicantList.get(i).getApplicantID() == applicantID)
-			{
-				Applicant a = applicantList.get(i);
-				ApplicantRating rating = new ApplicantRating();
-				break loop;
-			}
-		}
+		Applicant a = applicantList.get(applicantID);
+		ApplicantRating rating = new ApplicantRating();
 	}
 	
 	public void assignInterviewer(int interviewerID, int applicantID)
 	{
-		loop:
-		for(int i = 0; i < applicantList.size(); i++)
+		Applicant a = applicantList.get(applicantID);
+		int[] interviewers = a.applicantInterviewer;
+				
+		boolean set = false;
+		
+		innerloop:
+		for(int j = 0; j < interviewers.length; j++)
 		{
-			if(applicantList.get(i).getApplicantID() == applicantID)
+			if(interviewers[j] == 0)
 			{
-				int[] interviewers = applicantList.get(i).applicantInterviewer;
-				
-				boolean set = false;
-				
-				innerloop:
-				for(int j = 0; j < interviewers.length; j++)
-				{
-					if(interviewers[j] == 0)
-					{
-						interviewers[j] = interviewerID;
-						set = true;
-						break loop;
-					}
-				}
-				if(set == false)
-				{
-					int[] newList = new int[interviewers.length + 1];
-					newList[-1] = interviewerID;
-					applicantList.get(i).setApplicantInterviewer(newList);
-					
-				}
-				break loop;
+				interviewers[j] = interviewerID;
+				set = true;
+				break innerloop;
 			}
+		}
+		if(set == false)
+		{
+			int[] newList = new int[interviewers.length + 1];
+			newList[-1] = interviewerID;
+			a.setApplicantInterviewer(newList);
+			
 		}
 	}
 }
