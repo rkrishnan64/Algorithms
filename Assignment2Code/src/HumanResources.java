@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 
 
-public class HumanResources extends JobManager {
+public class HumanResources extends JobManager{
 	public String name;
 	public String department;
 	public String description;
@@ -19,33 +19,36 @@ public class HumanResources extends JobManager {
 	/*
 	 * Inner Job class that constructs a Job object
 	 */
-	
-	
+	private ArrayList<Interviewer> interviewerList = new ArrayList<Interviewer>();
+	private ArrayList<Applicant> applicantList = new ArrayList<Applicant>();
     private ArrayList<Job> jobList = new ArrayList<Job>(); //List to store Jobs
-	public void createJobManager(){
+	
+
+    public void createJobManager(){
 		Scanner console = new Scanner(System.in);
 		//Create Job Instance
 		System.out.println("What is the job title, description & department name?");
 		String answer1 = console.next();
+		JobManager x = new JobManager();
+		
 		
 	}
 	
 	
-	public void JobsManager(){
-		//for(newJobList, search for match)
-		
-		
-	}
-    public void newInterviewersManager(){
+	
+    public void createInterviewersManager(){
     	System.out.print("Press 1 to view interviewers that are assigned to a job, press 2 to exit");
+    	InterviewerManager x = new InterviewerManager();
+    	
+    }
+    public void createApplicantManager(){
+    	System.out.println("");
+    	ApplicantManager x = new ApplicantManager();
+    	
     	
     }
 	
 	
-	public void assignInterviewer(){
-		System.out.println("Press 2 to assign an interviewer, press 1 to exit");
-		
-    }
 	
 }
 	
