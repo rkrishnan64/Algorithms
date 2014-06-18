@@ -1,7 +1,17 @@
+/*
+ * Rohit
+ *
+ */
+
 import java.util.ArrayList;
+import java.io.File;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 
-public class HumanResources {
+
+public class HumanResources extends JobManager {
 	public String name;
 	public String department;
 	public String description;
@@ -10,14 +20,50 @@ public class HumanResources {
 	 * Inner Job class that constructs a Job object
 	 */
 	
-	class Job {
+	
+    private ArrayList<Job> jobList = new ArrayList<Job>(); //List to store Jobs
+	public void createJobManager(){
+		Scanner console = new Scanner(System.in);
+		//Create Job Instance
+		System.out.println("What is the job title, description & department name?");
+		String answer1 = console.next();
+		
+	}
+	
+	
+	public void JobsManager(){
+		//for(newJobList, search for match)
+		
+		
+	}
+    public void newInterviewersManager(){
+    	System.out.print("Press 1 to view interviewers that are assigned to a job, press 2 to exit");
+    	
+    }
+	
+	
+	public void assignInterviewer(){
+		System.out.println("Press 2 to assign an interviewer, press 1 to exit");
+		
+    }
+	
+}
+	
+	/*
+	 * Job Parameter Accessors
+	 */
+	/*
+	 * 
+	 * 
+	 * 
+	 
 		String name;
 		String department;
 		String description;
 		int ID;
 		/*
 		 * 
-		 */
+		 
 	    public Job(String jobName, String jobDepartment, 
 				String jobDescription, int jobID){
 			    name = jobName;
@@ -25,11 +71,6 @@ public class HumanResources {
 			    description = jobDescription;
 			    ID = jobID;
 			  }
-		
-}
-	/*
-	 * Job Parameter Acessors
-	 */
 	public boolean getJobStatus(){
 		return false;
 		
@@ -51,17 +92,7 @@ public class HumanResources {
 	/*
 	 * Store Jobs in list
 	 */
-	public ArrayList<Job> jobList = new ArrayList<Job>(); //List to store Jobs
 	
 	
-	public HumanResources(){
 	
-		
-	}
 	
-	public void createJobManager(String jobName, String jobDepartment, 
-			String jobDespcription, int jobID){
-		
-	}
-
-}
