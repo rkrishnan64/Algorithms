@@ -47,8 +47,30 @@ public class HumanResources{
    }
     
     public void createJobManager(){
+		Scanner in = new Scanner(System.in);
+		
+		
+		System.out.println("Please enter the corresponding # for the action you want to do:");
+		System.out.println("1.Add Job");
+		System.out.println("2.Delete Job");
+		System.out.println("3.Mark a job as filled");
+		System.out.println("4.View Job List");
+		int answer = in.nextInt();
 		JobManager job = new JobManager();
-		job.CreateJob(jobName, jobDescription, jobDepartment, jobId);
+		if (answer == 1){
+			System.out.println("Please specify the Job Name, Job Description, Job Department "
+					+ "& hit enter after each submission");
+			String jobName = in.next();
+			String jobDescription = in.next();
+			String jobDepartment = in.next();
+			int nextjobId = 0;  //need to change this
+			job.CreateJob(jobName, jobDescription, jobDepartment, nextjobId);
+	}
+		
+		
+    	
+    
+		
 		
     	
     	
