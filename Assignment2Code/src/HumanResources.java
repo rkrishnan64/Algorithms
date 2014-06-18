@@ -8,10 +8,10 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.*;
 
 
-
-public class HumanResources extends JobManager{
+public class HumanResources{
 	public String name;
 	public String department;
 	public String description;
@@ -19,20 +19,49 @@ public class HumanResources extends JobManager{
 	/*
 	 * Inner Job class that constructs a Job object
 	 */
-	private ArrayList<Interviewer> interviewerList = new ArrayList<Interviewer>();
-	private ArrayList<Applicant> applicantList = new ArrayList<Applicant>();
-    private ArrayList<Job> jobList = new ArrayList<Job>(); //List to store Jobs
+	private HashMap<Integer, Interviewer> interviewerList = new HashMap<Integer, Interviewer>();
+	private HashMap<Integer, Applicant> applicantList = new HashMap<Integer, Applicant>();
+    private HashMap<Integer, Job> jobList = new HashMap<Integer, Job>(); //List to store Jobs
 	
+    public void Manager(){
+    	//Create Job
+    	Scanner console = new Scanner(System.in);
+    	System.out.println("Choose corresponding # from menu:");
+    	System.out.println("1. Job Manager");
+    	System.out.println("2. Interviewer Manager");
+    	System.out.println("3. Applicant Manager");
+    	int answer1 = console.nextInt();
+    	if(answer1 == 1){
+    		createJobManager();
+    	}
+    	else if(answer1 == 2){
+    		createInterviewerManager();
+    	}
+    	
+    	
+    	
+    }
+    
+    
+    
 
     public void createJobManager(){
-		Scanner console = new Scanner(System.in);
-		//Create Job Instance
-		System.out.println("What is the job title, description & department name?");
-		String answer1 = console.next();
-		JobManager x = new JobManager();
+		JobManager job = new JobManager();
+		job.CreateJob(jobName, jobDescription, jobDepartment, jobId);
+		
+    	
+    	
+//    	Scanner console = new Scanner(System.in);
+//		//Create Job Instance
+//		System.out.println("Enter the job title, description & department name?");
+//		String answer1 = console.next();
+//		String answer2 = console.next();
+//		String answer3 = console.next();
+//		JobManager x = new JobManager();
+//		x.CreateJob(answer1, answer2, answer3, 0);
 		
 		
-	}
+		}
 	
 	
 	

@@ -5,7 +5,6 @@ public class ApplicantRating {
 	public float sal;
 	public float rating;
 	
-	
 	public void setRating(float experience, float attitude, float salary){
 			exp = experience;
 			att = attitude;
@@ -16,8 +15,4 @@ public class ApplicantRating {
 	public float getRating(){
 		return rating;
 		}
-	
-	
-	
-
 }
