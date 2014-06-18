@@ -12,7 +12,4 @@ public class Interviewer
 	{
 		Name = NewName;
 	}
-	public int getID(int id){
-		return ID;
-	}
 }
