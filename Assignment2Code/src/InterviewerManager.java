@@ -1,25 +1,27 @@
-import java.util.ArrayList;
+
+import java.util.HashMap;
 
 
 public class InterviewerManager 
 {
-	ArrayList<Interviewer> InterviewerList;
-	int nextInterviewerID;
+	private HashMap<Integer, Interviewer> InterviewerList;
+	private int nextInterviewerID;
 	
 	public InterviewerManager()
 	{
-		InterviewerList = new ArrayList<Interviewer>();
+		InterviewerList = new HashMap<Integer, Interviewer>();
 		nextInterviewerID = 0;
 	}
 	
-	public void createInterviewer(String Name, int newInterviewerID )
+	public void createInterviewer(String Name, int nextInterviewerID)
 	{
 		Interviewer Person = new Interviewer();
 		Person.setName(Name);
-		InterviewerList.add(Person);
+		InterviewerList.put(this.nextInterviewerID,Person);
+		this.nextInterviewerID = nextInterviewerID;
 	}
 	
-	public void deleteInterviewer(Interviewer InterviewerID)
+	public void deleteInterviewer(int InterviewerID)
 	{
 		InterviewerList.remove(InterviewerID);
 	}

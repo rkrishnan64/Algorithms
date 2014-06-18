@@ -2,7 +2,6 @@
 public class Interviewer 
 {
 	private String Name;
-	private int ID;
 	
 	public String getName()
 	{
