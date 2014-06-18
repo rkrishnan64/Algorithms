@@ -35,16 +35,17 @@ public class HumanResources{
     		createJobManager();
     	}
     	else if(answer1 == 2){
-    		createInterviewerManager();
+    		createInterviewersManager();
+    		
     	}
-    	
-    	
-    	
-    }
+    	else if(answer1 == 3){
+    		createApplicantManager();
+    	}
+    	else{
+    		System.out.println("You entered an invalid choice");
+    	}
+   }
     
-    
-    
-
     public void createJobManager(){
 		JobManager job = new JobManager();
 		job.CreateJob(jobName, jobDescription, jobDepartment, jobId);
