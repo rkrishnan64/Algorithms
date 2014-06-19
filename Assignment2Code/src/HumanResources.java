@@ -48,14 +48,16 @@ public class HumanResources{
     
     public void createJobManager(){
 		Scanner in = new Scanner(System.in);
+		int answer = in.nextInt();
+		JobManager job = new JobManager();
 		
 		System.out.println("Please enter the corresponding # for the action you want to do:");
 		System.out.println("1.Add Job");
 		System.out.println("2.Delete Job");
 		System.out.println("3.Mark a job as filled");
 		System.out.println("4.View Job List");
-		int answer = in.nextInt();
-		JobManager job = new JobManager();
+		
+		
 		if (answer == 1){
 			System.out.println("Please specify the Job Name, Job Description, Job Department "
 					+ "& hit enter after each submission");
@@ -81,31 +83,26 @@ public class HumanResources{
 			
 					
 		}
-		
-		
-    	
-    
-		
-		
-    	
-    	
-//    	Scanner console = new Scanner(System.in);
-//		//Create Job Instance
-//		System.out.println("Enter the job title, description & department name?");
-//		String answer1 = console.next();
-//		String answer2 = console.next();
-//		String answer3 = console.next();
-//		JobManager x = new JobManager();
-//		x.CreateJob(answer1, answer2, answer3, 0);
-		
-		
-		}
-	
-	
-	
-    public void createInterviewersManager(){
-    	System.out.print("Press 1 to view interviewers that are assigned to a job, press 2 to exit");
+	}
+	 public void createInterviewersManager(){
+    	Scanner in = new Scanner(System.in);
     	InterviewerManager x = new InterviewerManager();
+		 System.out.println("Please press the # of the corresponding option:");
+    	 System.out.println("1.Add Interviewer");
+    	 System.out.println("2.Delete Interviewer");
+    	 
+    	 int answer = in.nextInt();
+    	 if(answer == 1){
+    		 System.out.println("Enter the Name of the interviewer you wish to add, then hit enter");
+    		 String name = in.next();
+    		 int upper = 100;
+    		 int lower = 1;
+    		 int r = (int) ((Math.random() * (upper - lower)) + lower); //creates a random number between 1 & 100 for InterviewerID
+    		 
+    		 x.createInterviewer(name, r);
+    		 
+    	 }
+    	
     	
     }
     public void createApplicantManager(){
