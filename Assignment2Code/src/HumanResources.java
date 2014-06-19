@@ -49,7 +49,6 @@ public class HumanResources{
     public void createJobManager(){
 		Scanner in = new Scanner(System.in);
 		
-		
 		System.out.println("Please enter the corresponding # for the action you want to do:");
 		System.out.println("1.Add Job");
 		System.out.println("2.Delete Job");
@@ -66,6 +65,22 @@ public class HumanResources{
 			int nextjobId = 0;  //need to change this
 			job.CreateJob(jobName, jobDescription, jobDepartment, nextjobId);
 	}
+		//if answer is 2, delete a job that is specified
+		if(answer == 2){
+			System.out.println("Please specify the JobID for the Job that you want deleted");
+			int ID = in.nextInt();
+			job.deleteJob(ID);
+		}
+		if(answer == 3){
+			System.out.println("Please specify the name of the Job that you would like to mark as filled");
+		    //To be completed
+		    //choose job that you want to mark as filled, & setJobFilled(boolean)
+		if(answer == 4){
+			
+		}
+			
+					
+		}
 		
 		
     	
