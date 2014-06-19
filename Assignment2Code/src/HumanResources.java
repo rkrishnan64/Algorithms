@@ -86,7 +86,7 @@ public class HumanResources{
 	}
 	 public void createInterviewersManager(){
     	Scanner in = new Scanner(System.in);
-    	InterviewerManager x = new InterviewerManager();
+    	InterviewerManager interviewer = new InterviewerManager();
 		 System.out.println("Please press the # of the corresponding option:");
     	 System.out.println("1.Add Interviewer");
     	 System.out.println("2.Delete Interviewer");
@@ -99,22 +99,51 @@ public class HumanResources{
     		 int lower = 1;
     		 int r = (int) ((Math.random() * (upper - lower)) + lower); //creates a random number between 1 & 100 for InterviewerID
     		 
-    		 x.createInterviewer(name, r);
+    		 interviewer.createInterviewer(name, r);
     		 
     	 }
     	 if(answer == 2){
     		 System.out.println("Enter the ID of the interviewer you wish to delete, then hit enter");
     		 int ID = in.nextInt();
-    		 x.deleteInterviewer(ID);
-             
-    	 }
+    		 interviewer.deleteInterviewer(ID);
+         }
+    	 
+    	 
+    	 
     	
     	
     }
     public void createApplicantManager(){
-    	System.out.println("");
-    	ApplicantManager x = new ApplicantManager();
+    	System.out.println("Please enter the corresponding # for the action you want to do:");
+    	System.out.println("1.Add applicant");
+    	System.out.println("2.Delete Applicant");
+    	System.out.println("3.Rate an Applicant");
+    	System.out.println("4.Assign interviewer");
+    	ApplicantManager applicant = new ApplicantManager();
+    	Scanner in = new Scanner(System.in);
     	
+    	int answer = in.nextInt();
+    	if(answer == 1){
+    		
+    		System.out.println("Please specify the Job ID, First Name, Last Name & Email Address.  Press enter after entering each field");
+    		int jobID = in.nextInt();
+    		String firstName = in.next();
+    		String lastName = in.next();
+    		String emailAddress = in.next();
+    		
+    		int lower = 1;
+    		int upper = 100;
+    		
+    		int random = (int) ((Math.random() * (upper - lower)) + lower);
+    	    int nextApplicantID = random;
+    		applicant.createApplicant(jobID, firstName, lastName, emailAddress, nextApplicantID);
+    	}
+    	if(answer == 2){
+    		System.out.println("Please specify the Job ID for the applicant you wish to delete");
+    		int id = in.nextInt();
+    		applicant.deleteApplicant(id);
+    		
+    	}
     	
     }
 	
@@ -122,50 +151,6 @@ public class HumanResources{
 	
 }
 	
-	/*
-	 * Job Parameter Accessors
-	 */
-	/*
-	 * 
-	 * 
-	 * 
-	 
-		String name;
-		String department;
-		String description;
-		int ID;
-		/*
-		 * 
-		 
-	    public Job(String jobName, String jobDepartment, 
-				String jobDescription, int jobID){
-			    name = jobName;
-			    department = jobDepartment;
-			    description = jobDescription;
-			    ID = jobID;
-			  }
-	public boolean getJobStatus(){
-		return false;
-		
-	}
-	public int getJobID(){
-		return ID;
-	}
-	public String getJobName(){
-		return name;
-		
-	}
-	public String getJobDepartment(){
-		return department;
-	}
-	public String getJobDescription(){
-		return description;
-	}
-	
-	/*
-	 * Store Jobs in list
-	 */
-	
-	
+
 	
 	
