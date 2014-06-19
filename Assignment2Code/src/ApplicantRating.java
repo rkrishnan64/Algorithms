@@ -1,9 +1,9 @@
 
 public class ApplicantRating {
-	public float exp;
-	public float att;
-	public float sal;
-	public float rating;
+	private float exp;
+	private float att;
+	private float sal;
+	private float rating;
 	
 	public void setRating(float experience, float attitude, float salary){
 			exp = experience;
