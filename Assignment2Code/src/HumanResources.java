@@ -102,6 +102,12 @@ public class HumanResources{
     		 x.createInterviewer(name, r);
     		 
     	 }
+    	 if(answer == 2){
+    		 System.out.println("Enter the ID of the interviewer you wish to delete, then hit enter");
+    		 int ID = in.nextInt();
+    		 x.deleteInterviewer(ID);
+             
+    	 }
     	
     	
     }
