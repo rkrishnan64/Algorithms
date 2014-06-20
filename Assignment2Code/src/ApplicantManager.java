@@ -26,13 +26,13 @@ public class ApplicantManager
 		applicantList.remove(applicantID);
 	}
 	
-	//TODO 
-	//need to still finish - waiting on applicantrating class
 	//added applicant id as parameter
 	public void rateApplicant(int experienceRating, int attitudeRating, int salaryRating, int applicantID)
 	{
 		Applicant a = applicantList.get(applicantID);
 		ApplicantRating rating = new ApplicantRating();
+		rating.setRating(experienceRating, attitudeRating, salaryRating);
+		a.setApplicantRating(rating.getRating());
 	}
 	
 	public void assignInterviewer(int interviewerID, int applicantID)
