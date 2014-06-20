@@ -1,45 +1,51 @@
 /*
- * Rohit
+ * Rohit Krishnan
+ * Apoorva Shastry
+ * Gurnit Kaur Ghardhora
+ * Gordon Liang
  *
  */
 
-import java.util.ArrayList;
-import java.io.File;
-import java.io.PrintWriter;
-import java.util.*;
+import java.util.Scanner;
 
-
-
-public class HumanResources{
+public class HumanResources
+{
 	private JobManager jobManage;
 	private ApplicantManager applicantManage;
 	private InterviewerManager interviewerManage;
 	
-    public void Manager(){
+    public void Manager()
+    {
     	//Create Job
-    	Scanner console = new Scanner(System.in);
+    	Scanner in = new Scanner(System.in);
     	System.out.println("Choose corresponding # from menu:");
     	System.out.println("1. Job Manager");
     	System.out.println("2. Interviewer Manager");
     	System.out.println("3. Applicant Manager");
-    	int answer1 = getInteger(console.next());
-    	if(answer1 == 1){
+    	int answer1 = getInteger(in.next());
+    	if(answer1 == 1)
+    	{
     		createJobManager();
     	}
-    	else if(answer1 == 2){
-    		createInterviewersManager();
+    	else if(answer1 == 2)
+    	{
+    		createInterviewerManager();
     		
     	}
-    	else if(answer1 == 3){
+    	else if(answer1 == 3)
+    	{
     		createApplicantManager();
     	}
-    	else{
+    	else
+    	{
     		tryAgain();
     		Manager();
     	}
+    	
    }
     
-    public void createJobManager(){
+    private void createJobManager()
+    {
 		
 		System.out.println("Please enter the corresponding # for the action you want to do:");
 		System.out.println("1.Add Job");
@@ -68,12 +74,13 @@ public class HumanResources{
 			tryAgain();
 			createJobManager();
 		}
+    	
 		Manager();
 	}
     
-     public void addingJob()
-     {
-    	 System.out.println("Please specify the Job Name, Job Description, Job Department, "
+    private void addingJob()
+    {
+    	System.out.println("Please specify the Job Name, Job Description, Job Department, "
 					+ "Next Job ID & hit enter after each submission");
 	 	Scanner in = new Scanner(System.in);
 		String jobName = in.nextLine();
@@ -95,10 +102,11 @@ public class HumanResources{
 		{
 			addingJob();
 		}
-     }
+    	
+    }
      
-     public void deletingJob()
-     {
+    private void deletingJob()
+    {
     	 Scanner in = new Scanner(System.in);
     	 System.out.println("Please specify the JobID for the Job that you want deleted");
     	 int ID = getInteger(in.next());
@@ -114,10 +122,11 @@ public class HumanResources{
     	 {
     		 deletingJob();
     	 }
-     }
+     	
+    }
      
-     public void fillingJob()
-     {
+    private void fillingJob()
+    {
     	 Scanner in = new Scanner(System.in);
     	 System.out.println("Please specify the ID of the Job that you would like to mark as filled");
     	 int ID = getInteger(in.next());
@@ -133,38 +142,78 @@ public class HumanResources{
     	 {
     		 fillingJob();
     	 }
-     }
-     
-	 public void createInterviewersManager(){
-    	Scanner in = new Scanner(System.in);
-    	interviewerManage = new InterviewerManager();
-		 System.out.println("Please press the # of the corresponding option:");
-    	 System.out.println("1.Add Interviewer");
-    	 System.out.println("2.Delete Interviewer");
-    	 
-    	 int answer = in.nextInt();
-    	 if(answer == 1){
-    		 System.out.println("Enter the Name of the interviewer you wish to add, then hit enter");
-    		 String name = in.next();
-    		 int upper = 100;
-    		 int lower = 1;
-    		 int r = (int) ((Math.random() * (upper - lower)) + lower); //creates a random number between 1 & 100 for InterviewerID
-    		 
-    		 interviewerManage.createInterviewer(name, r);
-    		 
-    	 }
-    	 if(answer == 2){
-    		 System.out.println("Enter the ID of the interviewer you wish to delete, then hit enter");
-    		 int ID = in.nextInt();
-    		 interviewerManage.deleteInterviewer(ID);
-         }
-    	 
-    	 
-    	 
-    	
-    	
+     	
     }
-    public void createApplicantManager(){
+     
+	private void createInterviewerManager()
+	{
+		Scanner in = new Scanner(System.in);
+		interviewerManage = new InterviewerManager();
+		System.out.println("Please press the # of the corresponding option:");
+		System.out.println("1.Add Interviewer");
+		System.out.println("2.Delete Interviewer");
+    	 
+    	int answer = getInteger(in.next());
+    	if(answer == 1)
+    	{
+    		addingInterviewer();
+    	}
+    	if(answer == 2)
+    	{
+    		deletingInterviewer();
+        }
+    	else
+    	{
+    		tryAgain();
+    		createInterviewerManager();
+    	}
+    	
+    	Manager();
+	}
+	
+	private void addingInterviewer()
+	{
+
+		Scanner in = new Scanner(System.in);
+		System.out.println("Please specify the interviewer name and the next interviewer ID. Hit Enter after each submission.");
+		String name = in.nextLine();
+		int nextID = getInteger(in.next());
+		System.out.println("Is this correct? Y/N");
+   	 	System.out.println("Add Interviewer: " + name);
+   	 	System.out.println("Next Interviewer ID: " + nextID);
+   	 	boolean confirmation = confirmMessage();
+   	 	if (confirmation)
+   	 	{
+   	 		interviewerManage.createInterviewer(name, nextID);
+   	 		System.out.println("Interviewer created");
+   	 	}
+   	 	else
+   	 	{
+   	 		addingInterviewer();
+   	 	}
+    	
+	}
+	private void deletingInterviewer()
+	{
+		Scanner in = new Scanner(System.in);
+		System.out.println("Please specify the ID of the interviewer you wish to delete.");
+		int deleteID = getInteger(in.next());
+		System.out.println("Is this correct? Y/N");
+   	 	System.out.println("Delete Interviewer ID: " + deleteID);
+   	 	boolean confirmation = confirmMessage();
+	 	if (confirmation)
+	 	{
+	 		interviewerManage.deleteInterviewer(deleteID);
+	 	}
+	 	else
+	 	{
+	 		deletingInterviewer();
+	 	}
+    	
+	}
+	
+	 private void createApplicantManager()
+	 {
     	System.out.println("Please enter the corresponding # for the action you want to do:");
     	System.out.println("1.Add applicant");
     	System.out.println("2.Delete Applicant");
@@ -173,30 +222,130 @@ public class HumanResources{
     	applicantManage = new ApplicantManager();
     	Scanner in = new Scanner(System.in);
     	
-    	int answer = in.nextInt();
-    	if(answer == 1){
-    		
-    		System.out.println("Please specify the Job ID, First Name, Last Name & Email Address.  Press enter after entering each field");
-    		int jobID = in.nextInt();
-    		String firstName = in.next();
-    		String lastName = in.next();
-    		String emailAddress = in.next();
-    		
-    		int lower = 1;
-    		int upper = 100;
-    		
-    		int random = (int) ((Math.random() * (upper - lower)) + lower);
-    	    int nextApplicantID = random;
-    		applicantManage.createApplicant(jobID, firstName, lastName, emailAddress, nextApplicantID);
+    	int answer = getInteger(in.next());
+    	if(answer == 1)
+    	{
+    		addingApplicant();
     	}
-    	if(answer == 2){
-    		System.out.println("Please specify the Job ID for the applicant you wish to delete");
-    		int id = in.nextInt();
-    		applicantManage.deleteApplicant(id);
-    		
+    	else if(answer == 2)
+    	{
+    		deletingApplicant();
+    	}
+    	else if (answer == 3)
+    	{
+    		ratingApplicant();
+    	}
+    	else if (answer == 4)
+    	{
+    		assigningInterviewer();
+    	}
+    	else
+    	{
+    		tryAgain();
+    		createApplicantManager();
     	}
     	
+    	Manager();
     }
+	
+	private void addingApplicant()
+	{
+		System.out.println("Please specify the Job ID, First Name, Last Name, Email Address, and Next Applicant ID.  Press enter after entering each field");
+		Scanner in = new Scanner(System.in);
+		int jobID = getInteger(in.next());
+		String firstName = in.nextLine();
+		String lastName = in.nextLine();
+		String emailAddress = in.nextLine();
+	    int nextApplicantID = getInteger(in.next());
+	    System.out.println("Is this correct? Y/N");
+		System.out.println("Job ID: " + jobID);
+		System.out.println("First Name: " + firstName);
+		System.out.println("Last Name: " + lastName);
+		System.out.println("Email Address: " + emailAddress);
+		System.out.println("Next Applicant ID: " + nextApplicantID);
+		boolean confirmation = confirmMessage();
+		if (confirmation)
+		{
+			applicantManage.createApplicant(jobID, firstName, lastName, emailAddress, nextApplicantID);
+			System.out.println("Applicant created.");
+		}
+		else
+		{
+			addingApplicant();
+		}
+    	
+	}
+
+	private void deletingApplicant() 
+	{
+		Scanner in = new Scanner(System.in);
+	   	System.out.println("Please specify the Applicant ID for the Applicant that you want deleted");
+	   	int ID = getInteger(in.next());
+	   	System.out.println("Is this correct? Y/N");
+	   	System.out.println("Delete Applicant: " + ID);
+	   	boolean confirmation = confirmMessage();
+	   	if (confirmation)
+	   	{
+	   		applicantManage.deleteApplicant(ID);
+	   		System.out.println("Applicant deleted");
+	   	}
+	   	else
+	   	{
+	   		deletingApplicant();
+	   	}
+    	
+	}
+
+	private void ratingApplicant() 
+	{
+		Scanner in = new Scanner(System.in);
+	   	System.out.println("Please specify the Applicant ID for the Applicant you are rating and enter their "
+	   			+ "rating for Experience, Attitude, & Salary. Press Enter after each entry.");
+	   	int ID = getInteger(in.next());
+	   	int experience = getInteger(in.next());
+	   	int attitude = getInteger(in.next());
+	   	int salary = getInteger(in.next());
+	   	System.out.println("Is this correct? Y/N");
+	   	System.out.println("Applicant ID: " + ID);
+	   	System.out.println("Experience: " + experience);
+	   	System.out.println("Attitude: " + attitude);
+	   	System.out.println("Salary: " + salary);
+	   	boolean confirmation = confirmMessage();
+	   	if (confirmation)
+	   	{
+	   		applicantManage.rateApplicant(experience, attitude, salary, ID);
+	   		System.out.println("Applicant rated");
+	   	}
+	   	else
+	   	{
+	   		ratingApplicant();
+	   	}
+    	
+	}
+
+	private void assigningInterviewer() 
+	{
+		Scanner in = new Scanner(System.in);
+   	 	System.out.println("Please specify the ID of the Interviewer and the Applicant to be interviewed." +
+   	 			"Press Enter after each field.");
+   	 	int interviewerID = getInteger(in.next());
+   	 	int applicantID = getInteger(in.next());
+   	 	System.out.println("Is this correct? Y/N");
+   	 	System.out.println("Interviewer ID: " + interviewerID);
+   	 	System.out.println("Applicant ID: " + applicantID);
+   	 	boolean confirmation = confirmMessage();
+   	 	if (confirmation)
+   	 	{
+   	 		applicantManage.assignInterviewer(interviewerID, applicantID);
+   	 		System.out.println("Interviewer assinged");
+   	 	}
+   	 	else
+   	 	{
+   	 		assigningInterviewer();
+   	 	}
+    	
+	}
+
 	// Used for error output.
     private static void tryAgain()
 	{
@@ -207,7 +356,8 @@ public class HumanResources{
 	private static boolean confirmMessage()
 	{
 		Scanner in = new Scanner(System.in);
-		String reply = in.next();
+		String reply = in.next().toUpperCase();
+    	
 		if (reply.equals("Y"))
 		{
 			return true;
@@ -225,7 +375,7 @@ public class HumanResources{
 	}
 	
 	// Use to check if input is a number.
-	public static int getInteger(String s) 
+	private static int getInteger(String s) 
 	{
 	    try 
 	    { 
@@ -237,6 +387,7 @@ public class HumanResources{
 	    	System.out.println("Input must be an integer");
 	    	Scanner in = new Scanner(System.in);
 	    	String again = in.next();
+	    	
 	        return getInteger(again); 
 	    }
 	}

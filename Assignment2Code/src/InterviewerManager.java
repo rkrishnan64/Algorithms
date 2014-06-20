@@ -23,6 +23,14 @@ public class InterviewerManager
 	
 	public void deleteInterviewer(int InterviewerID)
 	{
-		InterviewerList.remove(InterviewerID);
+		Interviewer check = InterviewerList.remove(InterviewerID);
+		if (check == null)
+		{
+			System.out.println("Invalid ID, unable to delete.");
+		}
+		else
+		{
+			System.out.println("Interviewer deleted");
+		}
 	}
 }
