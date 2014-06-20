@@ -8,7 +8,7 @@ public class JobManager
 	private int nextJobID;
 	private HashMap<Integer,Job> JobList = new HashMap<Integer,Job>();
 	Job j=new Job();
-	public void CreateJob(String jobName,String jobDescription,String jobDepartment,int nextjobId)
+	public void createJob(String jobName,String jobDescription,String jobDepartment,int nextjobId)
 	{
 		
 		j.setJobName(jobName);

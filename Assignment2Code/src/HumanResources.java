@@ -45,7 +45,6 @@ public class HumanResources{
 		System.out.println("1.Add Job");
 		System.out.println("2.Delete Job");
 		System.out.println("3.Mark a job as filled");
-		System.out.println("4.View Job List");
 
 		Scanner in = new Scanner(System.in);
 		int answer = getInteger(in.next());
@@ -56,24 +55,20 @@ public class HumanResources{
 			addingJob();
 		}
 		//if answer is 2, delete a job that is specified
-		else if(answer == 2){
-			System.out.println("Please specify the JobID for the Job that you want deleted");
-			int ID = in.nextInt();
-			jobManage.deleteJob(ID);
+		else if(answer == 2)
+		{
+			deletingJob();
 		}
-		else if(answer == 3){
-			System.out.println("Please specify the name of the Job that you would like to mark as filled");
-		    //To be completed
-		    //choose job that you want to mark as filled, & setJobFilled(boolean)
-		}
-		else if(answer == 4){
-			
+		else if(answer == 3)
+		{
+		    fillingJob();
 		}
 		else
 		{
 			tryAgain();
 			createJobManager();
 		}
+		Manager();
 	}
     
      public void addingJob()
@@ -81,10 +76,10 @@ public class HumanResources{
     	 System.out.println("Please specify the Job Name, Job Description, Job Department, "
 					+ "Next Job ID & hit enter after each submission");
 	 	Scanner in = new Scanner(System.in);
-		String jobName = in.next();
-		String jobDescription = in.next();
-		String jobDepartment = in.next();
-		int nextJobID = getInteger(in.next());  
+		String jobName = in.nextLine();
+		String jobDescription = in.nextLine();
+		String jobDepartment = in.nextLine();
+		int nextJobID = getInteger(in.nextLine());  
 		System.out.println("Is this correct? Y/N");
 		System.out.println("Job Name: " + jobName);
 		System.out.println("Job Description: " + jobDescription);
@@ -93,7 +88,7 @@ public class HumanResources{
 		boolean confirmation = confirmMessage();
 		if (confirmation)
 		{
-			jobManage.CreateJob(jobName, jobDescription, jobDepartment, nextJobID);
+			jobManage.createJob(jobName, jobDescription, jobDepartment, nextJobID);
 			System.out.println("Job confirmed.");
 		}
 		else
@@ -101,6 +96,45 @@ public class HumanResources{
 			addingJob();
 		}
      }
+     
+     public void deletingJob()
+     {
+    	 Scanner in = new Scanner(System.in);
+    	 System.out.println("Please specify the JobID for the Job that you want deleted");
+    	 int ID = getInteger(in.next());
+    	 System.out.println("Is this correct? Y/N");
+    	 System.out.println("Delete Job: " + ID);
+    	 boolean confirmation = confirmMessage();
+    	 if (confirmation)
+    	 {
+    		 jobManage.deleteJob(ID);
+    		 System.out.println("Job deleted.");
+    	 }
+    	 else
+    	 {
+    		 deletingJob();
+    	 }
+     }
+     
+     public void fillingJob()
+     {
+    	 Scanner in = new Scanner(System.in);
+    	 System.out.println("Please specify the ID of the Job that you would like to mark as filled");
+    	 int ID = getInteger(in.next());
+    	 System.out.println("Is this correct? Y/N");
+    	 System.out.println("Fill Job: " + ID);
+    	 boolean confirmation = confirmMessage();
+    	 if (confirmation)
+    	 {
+    		 jobManage.markJobStatus(ID, true);
+    		 System.out.println("Job filled");
+    	 }
+    	 else
+    	 {
+    		 fillingJob();
+    	 }
+     }
+     
 	 public void createInterviewersManager(){
     	Scanner in = new Scanner(System.in);
     	interviewerManage = new InterviewerManager();
